@@ -1,0 +1,93 @@
+
+models:
+  
+  Sala:
+    name: string
+    ranking: string
+    Salascol: string
+    puntuacion: string
+    relationships:
+     hasMany: User
+     belongsToMany: Partido
+    
+      
+
+  ApuestasCombinada:
+    fecha/hora: TIME
+    relationships:
+     belongsTo: User
+     hasMany: Partido
+
+  Partido:
+    mapa: string
+    arbitro: string
+    equipo_id: integer
+    equipo2_id: integer
+    fecha/hora: string
+    Puntuacion: string
+    relationships:
+     belongsTo:  Liga
+     belongsToMany: ApuestasCombinada , equipo
+
+  Liga:
+    nombre: string
+    split: string
+    relationships:
+     hasMany: Partido, Equipo
+
+  Equipo:
+    nombre: string
+    puesto: string
+    manager: string
+    relationships:
+     hasMany: Jugador
+     belongsTo: Liga , Cuota
+     
+
+  Jugador:
+    nombre: string
+    equipo: string
+    posicion: string
+    equipo_id: integer
+    relationships:
+     belongsTo: Equipo
+
+  Cuota:
+    valor: string
+    relationships:
+     hasMany: Equipo
+
+
+  Apuesta:
+    gasto: string
+    ganancias: string
+    fecha/hora: TIME
+    relationships:
+      belongsTo: User, Sala
+      hasOne: Cuota 
+
+
+
+  User:
+    saldo: string
+    nombre: string
+    email: string
+    password: string
+    telefono: string
+    historial: string
+    rol: enum[usuario, admin]
+
+    relationships:
+     hasMany: ApuestasCombinada
+     belongsTo: Sala
+
+
+ 
+
+
+     
+     
+
+
+controllers:
+  # ...

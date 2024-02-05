@@ -1,0 +1,57 @@
+created:
+    - database/factories/SalaFactory.php
+    - database/factories/ApuestasCombinadaFactory.php
+    - database/factories/PartidoFactory.php
+    - database/factories/LigaFactory.php
+    - database/factories/EquipoFactory.php
+    - database/factories/JugadorFactory.php
+    - database/factories/CuotaFactory.php
+    - database/factories/ApuestaFactory.php
+    - database/factories/UserFactory.php
+    - database/migrations/2024_02_02_212713_create_salas_table.php
+    - database/migrations/2024_02_02_212714_create_apuestas_combinadas_table.php
+    - database/migrations/2024_02_02_212715_create_partidos_table.php
+    - database/migrations/2024_02_02_212716_create_ligas_table.php
+    - database/migrations/2024_02_02_212717_create_equipos_table.php
+    - database/migrations/2024_02_02_212718_create_jugadors_table.php
+    - database/migrations/2024_02_02_212719_create_cuotas_table.php
+    - database/migrations/2024_02_02_212720_create_apuestas_table.php
+    - database/migrations/2024_02_02_212721_create_users_table.php
+    - database/migrations/2024_02_02_212722_create_partido_sala_table.php
+    - database/migrations/2024_02_02_212723_create_apuestas_combinada_partido_table.php
+    - database/migrations/2024_02_02_212724_create_equipo_partido_table.php
+    - app/Models/Sala.php
+    - app/Models/ApuestasCombinada.php
+    - app/Models/Partido.php
+    - app/Models/Liga.php
+    - app/Models/Equipo.php
+    - app/Models/Jugador.php
+    - app/Models/Cuota.php
+    - app/Models/Apuesta.php
+    - app/Models/User.php
+models:
+    Bet: { id: id, money: 'decimal:8,2', potential_earnings: 'decimal:8,2', status: 'enum:pending,accepted,rejected', timestamps: timestamps }
+    Match: { id: id, map: 'string:255', referee: 'string:255', team_1_id: id, team_2_id: id, timestamps: timestamps }
+    Quota: { id: id, value: 'decimal:5,2', timestamps: timestamps }
+    Team: { name: 'string:255', position: 'string:255', coach: 'string:255', timestamps: timestamps }
+    User: { saldo: string, nombre: string, email: string, password: string, telefono: string, historial: string, rol: 'enum[usuario, admin]', relationships: { hasMany: ApuestasCombinada, belongsTo: Sala } }
+    Room: { name: 'string:255', ranking: integer, score: integer, timestamps: timestamps }
+    League: { name: 'string:255', id: id, split: 'string:255', timestamps: timestamps }
+    Liga: { nombre: string, split: string, relationships: { hasMany: 'Partido, Equipo' } }
+    Salas: { name: string, ranking: string, Salascol: string, puntuacion: string, relationships: { hasMany: 'Partidos Users' } }
+    Equipos: { nombre: string, puesto: string, manager: string, Cuotas_idCuotas: integer, relationships: { belongsToMany: Jugadores, belongsTo: Liga } }
+    Users: { saldo: string, nombre: string, email: string, password: string, telefono: string, historial: string, rol: string, Salas_idSalas: integer, relationships: { hasMany: Apuestas_Combinada, belongsTo: Salas } }
+    Partidos: { mapa: string, arbitro: string, equipos_idequipos1: integer, equipos_idequipos2: integer, fecha/hora: string, Puntuacion: string, relationships: { belongsTo: Liga, belongsToMany: Equipos, hasMany: Apuestas_Combinada } }
+    Jugadores: { nombre: string, equipo: string, posicion: string, equipos_idequipos: integer, relationships: { belongsTo: Equipos } }
+    Cuotas: { valor: string, relationships: { belongsToMany: Equipos } }
+    Apuestas: { dinero: string, ganadas: string, estatus: string }
+    Users_has_Apuestas: { Users_idUsers: integer, Apuestas_idapuestas: integer }
+    Partidos_has_Apuestas: { Partidos_idPartidos: integer, apuestas_idapuestas: integer }
+    Apuestas_Combinada: { Id: string, fecha/hora: TIME, relationships: { belongsTo: User, hasMany: Partido } }
+    Apuesta: { gasto: string, ganancias: string, fecha/hora: TIME, relationships: { belongsTo: 'User, Sala', hasOne: Cuota } }
+    Sala: { name: string, ranking: string, Salascol: string, puntuacion: string, relationships: { hasMany: User, belongsToMany: Partido } }
+    Partido: { mapa: string, arbitro: string, equipo_id: integer, equipo2_id: integer, fecha/hora: string, Puntuacion: string, relationships: { belongsTo: Liga, belongsToMany: 'ApuestasCombinada , equipo' } }
+    Equipo: { nombre: string, puesto: string, manager: string, relationships: { hasMany: Jugador, belongsTo: 'Liga , Cuota' } }
+    Jugador: { nombre: string, equipo: string, posicion: string, equipo_id: integer, relationships: { belongsTo: Equipo } }
+    Cuota: { valor: string, relationships: { hasMany: Equipo } }
+    ApuestasCombinada: { fecha/hora: TIME, relationships: { belongsTo: User, hasMany: Partido } }
