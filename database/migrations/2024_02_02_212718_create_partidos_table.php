@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('equipo_id')->constrained('equipos');
             $table->foreignId('equipo2_id')->constrained('equipos');
             $table->date('fecha');
+            $table->string('hora');
             $table->string('Puntuacion');
             $table->foreignId('liga_id')->constrained('ligas');
             $table->timestamps();

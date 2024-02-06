@@ -22,6 +22,7 @@ class Partido extends Model
         'equipo_id',
         'equipo2_id',
         'fecha',
+        'hora',
         'Puntuacion',
         'liga_id',
     ];

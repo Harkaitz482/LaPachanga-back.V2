@@ -55,6 +55,7 @@ class PartidoController extends Controller
             'equipos_idequipos1' => 'required',
             'equipos_idequipos2' => 'required',
             'fecha' => 'required',
+            'hora' =>'required',
             'Puntuacion' => 'required',
             'liga_id' => 'required',
         ]);
