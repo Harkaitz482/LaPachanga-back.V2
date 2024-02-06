@@ -34,6 +34,8 @@ Route::controller(LoginRegisterController::class)->group(function () {
 });
 
 Route::get('/partidos/this-week', [PartidoController::class, 'matchesThisWeek']);
+Route::get('/partidos/today', [PartidoController::class, 'matchesToday']);
+
 
 Route::controller('ligas', LigaController::class);
 Route::apiResource('cuotas', CuotasController::class);

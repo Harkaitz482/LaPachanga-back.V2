@@ -22,15 +22,15 @@ class PartidoController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'idPartidos'=>'required',
-            'mapa'=>'required',
-            'arbitro'=>'required',
-            'liga_idLiga'=>'required',
-            'equipos_idequipos1'=>'required',
-            'equipos_idequipos2'=>'required',
-            'fecha/hora'=>'required',
-            'Puntuacion'=>'required',
-            'liga_id'=>'required',
+            'idPartidos' => 'required',
+            'mapa' => 'required',
+            'arbitro' => 'required',
+            'liga_idLiga' => 'required',
+            'equipos_idequipos1' => 'required',
+            'equipos_idequipos2' => 'required',
+            'fecha/hora' => 'required',
+            'Puntuacion' => 'required',
+            'liga_id' => 'required',
         ]);
 
         $partido = Partido::create($validatedData);
@@ -48,15 +48,15 @@ class PartidoController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'idPartidos'=>'required',
-            'mapa'=>'required',
-            'arbitro'=>'required',
-            'liga_idLiga'=>'required',
-            'equipos_idequipos1'=>'required',
-            'equipos_idequipos2'=>'required',
-            'fecha'=>'required',
-            'Puntuacion'=>'required',
-            'liga_id'=>'required',
+            'idPartidos' => 'required',
+            'mapa' => 'required',
+            'arbitro' => 'required',
+            'liga_idLiga' => 'required',
+            'equipos_idequipos1' => 'required',
+            'equipos_idequipos2' => 'required',
+            'fecha' => 'required',
+            'Puntuacion' => 'required',
+            'liga_id' => 'required',
         ]);
 
         $partido = Partido::findOrFail($id);
@@ -72,7 +72,7 @@ class PartidoController extends Controller
         return response()->json(null, 204); // No Content
     }
 
-    
+
     public function Find($partidoId)
     {
         try {
@@ -92,25 +92,35 @@ class PartidoController extends Controller
     {
         $startOfWeek = Carbon::now()->startOfWeek()->toDateString();
         $endOfWeek = Carbon::now()->endOfWeek()->toDateString();
-    
+
         $matches = Partido::whereBetween('fecha', [$startOfWeek, $endOfWeek])->get();
-    
+
+        return response()->json($matches);
+    }
+
+
+    public function matchesToday()
+    {
+        $today = Carbon::now()->toDateString();
+
+        $matches = Partido::whereDate('fecha', $today)->get();
+
         return response()->json($matches);
     }
 
     public function getCuotasForPartido($partidoId)
     {
         $partido = Partido::with(['equipo.cuota', 'equipo2.cuota'])->find($partidoId);
-    
+
         if (!$partido) {
             return response()->json(['message' => 'Partido not found'], 404);
         }
-    
+
         $cuotas = [
             'equipo1_cuota' => $partido->equipo->cuota->valor ?? null,
             'equipo2_cuota' => $partido->equipo2->cuota->valor ?? null,
         ];
-    
+
         return response()->json($cuotas);
     }
 }
