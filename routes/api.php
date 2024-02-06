@@ -33,16 +33,23 @@ Route::controller(LoginRegisterController::class)->group(function () {
 
 });
 
+Route::get('/partidos/this-week', [PartidoController::class, 'matchesThisWeek']);
 
 Route::controller('ligas', LigaController::class);
 Route::apiResource('cuotas', CuotasController::class);
 Route::apiResource('ligas', LigaController::class);
 Route::apiResource('partidos', PartidoController::class);
 Route::apiResource('equipos', EquipoController::class);
+Route::apiResource('apuestas', ApuestaController::class);
+
 
 Route::get('/apuesta/{apuesta_id}', [ApuestaController::class,'Find']);
 Route::get('/cuotas/{cuota_id}', [CuotasController::class,'Find']);
 Route::get('/liga/{liga_id}', [LigaController::class,'Find']);
 Route::get('/partido/{partido_id}', [PartidoController::class,'Find']);
 Route::get('/equipo/{equipo_id}', [EquipoController::class,'Find']);
+Route::post('apuesta/create/{apuesta}',[ApuestaController::class,'create']);
+Route::get('/partidos/{partido}/cuotas', [PartidoController::class, 'getCuotasForPartido']);
+
+
 

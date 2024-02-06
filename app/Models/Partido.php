@@ -21,7 +21,7 @@ class Partido extends Model
         'arbitro',
         'equipo_id',
         'equipo2_id',
-        'fecha/hora',
+        'fecha',
         'Puntuacion',
         'liga_id',
     ];
@@ -46,8 +46,20 @@ class Partido extends Model
         return $this->belongsToMany(ApuestasCombinada::class);
     }
 
-    public function equipos(): BelongsToMany
+    public function equipo()
     {
-        return $this->belongsToMany(Equipo::class);
+        return $this->belongsTo(Equipo::class, 'equipo_id');
     }
+
+    public function equipo2()
+    {
+        return $this->belongsTo(Equipo::class, 'equipo2_id');
+    }
+
+    public function cuotas()
+    {
+        // Assuming there is a 'cuotas' method on the Equipo model that returns the Cuota relationship
+        return $this->hasManyThrough(Cuota::class, Equipo::class, 'id', 'id', 'equipo_id', 'cuota_id');
+    }
+
 }

@@ -20,9 +20,11 @@ class Apuesta extends Model
     protected $fillable = [
         'gasto',
         'ganancias',
-        'fecha/hora',
+        'fecha',
         'user_id',
         'sala_id',
+        'equipo_id',
+        'partido_id'
     ];
 
     /**

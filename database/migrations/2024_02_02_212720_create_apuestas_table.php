@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('gasto');
             $table->string('ganancias');
-            $table->time('fecha/hora');
+            $table->date('fecha');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('sala_id')->constrained();
             $table->foreignId('equipo_id')->constrained();

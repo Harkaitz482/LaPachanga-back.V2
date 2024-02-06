@@ -21,7 +21,7 @@ class CuotaFactory extends Factory
     public function definition(): array
     {
         return [
-            'valor' => $this->faker->word(),
+            'valor' => $this->faker->numberBetween(1, 5),
         ];
     }
 }

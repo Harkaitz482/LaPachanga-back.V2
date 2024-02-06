@@ -27,12 +27,21 @@ class ApuestaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            // Add validation rules here
+            'gasto' => 'required|string', // Assuming 'gasto' should be stored as a string
+            'ganancias' => 'required|string', // Assuming 'ganancias' should be stored as a string
+            'fecha' => 'required|date', // Ensures the field is a valid date
+            'user_id' => 'required|integer|exists:users,id', // Ensures the user_id exists in the users table
+            'sala_id' => 'required|integer|exists:salas,id', // Ensures the sala_id exists in the salas table
+            'equipo_id' => 'required|integer|exists:equipos,id', // Ensures the equipo_id exists in the equipos table
+            'partido_id' => 'required|integer|exists:partidos,id', // Ensures the partido_id exists in the partidos table
+            // Add any other fields and validation rules here
         ]);
-
+    
         $apuesta = Apuesta::create($validatedData);
         return response()->json($apuesta, 201);
     }
+    
+
 
     /**
      * Display the specified resource.
@@ -88,4 +97,7 @@ class ApuestaController extends Controller
             return response()->json(['error' => 'apuesta no encontrado'], 404);
         }
     }
+
+
+    
 }

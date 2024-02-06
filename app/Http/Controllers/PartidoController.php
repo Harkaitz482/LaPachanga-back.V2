@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Partido;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
+
 
 class PartidoController extends Controller
 {
@@ -50,7 +54,7 @@ class PartidoController extends Controller
             'liga_idLiga'=>'required',
             'equipos_idequipos1'=>'required',
             'equipos_idequipos2'=>'required',
-            'fecha/hora'=>'required',
+            'fecha'=>'required',
             'Puntuacion'=>'required',
             'liga_id'=>'required',
         ]);
@@ -81,5 +85,32 @@ class PartidoController extends Controller
             // Manejo de errores: el partido no se encuentra
             return response()->json(['error' => 'partido no encontrado'], 404);
         }
+    }
+
+
+    public function matchesThisWeek()
+    {
+        $startOfWeek = Carbon::now()->startOfWeek()->toDateString();
+        $endOfWeek = Carbon::now()->endOfWeek()->toDateString();
+    
+        $matches = Partido::whereBetween('fecha', [$startOfWeek, $endOfWeek])->get();
+    
+        return response()->json($matches);
+    }
+
+    public function getCuotasForPartido($partidoId)
+    {
+        $partido = Partido::with(['equipo.cuota', 'equipo2.cuota'])->find($partidoId);
+    
+        if (!$partido) {
+            return response()->json(['message' => 'Partido not found'], 404);
+        }
+    
+        $cuotas = [
+            'equipo1_cuota' => $partido->equipo->cuota->valor ?? null,
+            'equipo2_cuota' => $partido->equipo2->cuota->valor ?? null,
+        ];
+    
+        return response()->json($cuotas);
     }
 }

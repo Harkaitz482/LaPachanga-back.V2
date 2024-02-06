@@ -27,7 +27,7 @@ class ApuestaFactory extends Factory
         return [
             'gasto' => $this->faker->word(),
             'ganancias' => $this->faker->word(),
-            'fecha/hora' => $this->faker->time(),
+            'fecha' => $this->faker->date(),
             'user_id' => User::factory(),
             'sala_id' => Sala::factory(),
             'equipo_id' => Equipo::factory(),

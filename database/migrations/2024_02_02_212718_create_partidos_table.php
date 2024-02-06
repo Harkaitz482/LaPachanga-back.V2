@@ -15,14 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('mapa');
             $table->string('arbitro');
-            $table->integer('equipo_id')->constrained();
-            $table->integer('equipo2_id')->constrained();
-            $table->string('fecha/hora');
+            $table->foreignId('equipo_id')->constrained('equipos');
+            $table->foreignId('equipo2_id')->constrained('equipos');
+            $table->date('fecha');
             $table->string('Puntuacion');
-            $table->foreignId('liga_id')->constrained();
+            $table->foreignId('liga_id')->constrained('ligas');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
