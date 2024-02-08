@@ -98,6 +98,13 @@ class ApuestaController extends Controller
         }
     }
 
+    public function obtenerApuestasPorUsuario($id)
+    {
+        $apuestas = Apuesta::where('user_id', $id)->get();
+
+        return response()->json($apuestas);
+    }
+
 
     
 }

@@ -35,6 +35,8 @@ Route::controller(LoginRegisterController::class)->group(function () {
 
 Route::get('/partidos/this-week', [PartidoController::class, 'matchesThisWeek']);
 Route::get('/partidos/today', [PartidoController::class, 'matchesToday']);
+Route::get('/apuestas/usuario/{id}', [ApuestaController::class, 'obtenerApuestasPorUsuario']);
+
 
 
 Route::controller('ligas', LigaController::class);
