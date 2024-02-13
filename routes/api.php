@@ -52,7 +52,7 @@ Route::get('/cuotas/{cuota_id}', [CuotasController::class,'Find']);
 Route::get('/liga/{liga_id}', [LigaController::class,'Find']);
 Route::get('/partido/{partido_id}', [PartidoController::class,'Find']);
 Route::get('/equipo/{equipo_id}', [EquipoController::class,'Find']);
-Route::post('apuesta/create/{apuesta}',[ApuestaController::class,'create']);
+// Route::post('apuesta/create/{apuesta}',[ApuestaController::class,'create']);
 Route::get('/partidos/{partido}/cuotas', [PartidoController::class, 'getCuotasForPartido']);
 
 

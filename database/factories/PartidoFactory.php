@@ -30,7 +30,8 @@ class PartidoFactory extends Factory
             'equipo2_id' => Equipo::factory(),
             'fecha' => $this->faker->date(),
             'hora' => $this->faker->time(),
-            'Puntuacion' => $this->faker->word(),
+            'Puntuacion' => $this->faker->numberBetween(1, 2),
+            'ganador'=> $this->faker->word(),
             'liga_id' => Liga::factory(),
         ];
     }

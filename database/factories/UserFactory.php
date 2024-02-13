@@ -22,7 +22,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'saldo' => $this->faker->word(),
+            'saldo' => $this->faker->numberBetween(1, 5),
             'name' => $this->faker->word(),
             'email' => $this->faker->safeEmail(),
             'password' => $this->faker->password(),

@@ -19,7 +19,8 @@ return new class extends Migration
             $table->foreignId('equipo2_id')->constrained('equipos');
             $table->date('fecha');
             $table->string('hora');
-            $table->string('Puntuacion');
+            $table->integer('Puntuacion');
+            $table->string('ganador')->nullable();
             $table->foreignId('liga_id')->constrained('ligas');
             $table->timestamps();
         });

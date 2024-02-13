@@ -24,6 +24,7 @@ class Partido extends Model
         'fecha',
         'hora',
         'Puntuacion',
+        'ganador',
         'liga_id',
     ];
 
