@@ -124,4 +124,11 @@ class PartidoController extends Controller
 
         return response()->json($cuotas);
     }
+
+    public function partidosPorLiga($ligaId)
+    {
+        $partidos = Partido::where('liga_id', $ligaId)->get();
+
+        return response()->json($partidos);
+    }
 }
