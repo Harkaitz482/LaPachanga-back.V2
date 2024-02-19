@@ -22,15 +22,14 @@ class PartidoController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'idPartidos' => 'required',
             'mapa' => 'required',
             'arbitro' => 'required',
-            'liga_idLiga' => 'required',
-            'equipos_idequipos1' => 'required',
-            'equipos_idequipos2' => 'required',
-            'fecha/hora' => 'required',
-            'Puntuacion' => 'required',
-            'liga_id' => 'required',
+            'equipo_id' => 'required|exists:equipos,id', // Verifica que el equipo exista
+            'equipo2_id' => 'required|exists:equipos,id', // Verifica que el equipo exista
+            'fecha' => 'required|date',
+            'hora' => 'required',
+            'Puntuacion' => 'required|integer',
+            'liga_id' => 'required|exists:ligas,id', // Verifica que la liga exista
         ]);
 
         $partido = Partido::create($validatedData);
@@ -48,20 +47,30 @@ class PartidoController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'idPartidos' => 'required',
             'mapa' => 'required',
             'arbitro' => 'required',
-            'liga_idLiga' => 'required',
-            'equipos_idequipos1' => 'required',
-            'equipos_idequipos2' => 'required',
-            'fecha' => 'required',
-            'hora' =>'required',
-            'Puntuacion' => 'required',
-            'liga_id' => 'required',
+            'equipo_id' => 'required|exists:equipos,id',
+            'equipo2_id' => 'required|exists:equipos,id',
+            'fecha' => 'required|date',
+            'hora' => 'required',
+            'Puntuacion' => 'required|integer',
+            'ganador' => 'string', // Asegúrate de que este campo pueda ser nulo o añade una validación si es necesario.
+            'liga_id' => 'required|exists:ligas,id',
         ]);
 
         $partido = Partido::findOrFail($id);
-        $partido->update($validatedData);
+        $partido->mapa = $validatedData['mapa'];
+        $partido->arbitro = $validatedData['arbitro'];
+        $partido->equipo_id = $validatedData['equipo_id'];
+        $partido->equipo2_id = $validatedData['equipo2_id'];
+        $partido->fecha = $validatedData['fecha'];
+        $partido->hora = $validatedData['hora'];
+        $partido->Puntuacion = $validatedData['Puntuacion'];
+        $partido->ganador = $validatedData['ganador'] ?? null; // Establecer a null si no se proporciona
+        $partido->liga_id = $validatedData['liga_id'];
+
+
+        $partido->save(); // Utilizar save() para aplicar los cambios
         return response()->json($partido);
     }
 

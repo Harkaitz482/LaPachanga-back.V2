@@ -36,6 +36,7 @@ Route::controller(LoginRegisterController::class)->group(function () {
 Route::get('/partidos/this-week', [PartidoController::class, 'matchesThisWeek']);
 Route::get('/partidos/today', [PartidoController::class, 'matchesToday']);
 Route::get('/apuestas/usuario/{id}', [ApuestaController::class, 'obtenerApuestasPorUsuario']);
+Route::post('/partidos/update/{partidoId}',[PartidoController::class, 'update']);
 
 
 
@@ -55,7 +56,6 @@ Route::get('/equipo/{equipo_id}', [EquipoController::class,'Find']);
 // Route::post('apuesta/create/{apuesta}',[ApuestaController::class,'create']);
 Route::get('/partidos/{partido}/cuotas', [PartidoController::class, 'getCuotasForPartido']);
 Route::get('/liga/partidos/{ligaId}', [PartidoController::class, 'partidosPorLiga']);
-
 
 
 
