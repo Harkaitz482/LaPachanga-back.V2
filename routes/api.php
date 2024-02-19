@@ -25,37 +25,37 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(LoginRegisterController::class)->group(function () {
-    Route::post('/register', 'register');
-    Route::post('/login', 'login');
-    Route::post('/logout','logout');
-    Route::get('/users', [LoginRegisterController::class, 'show']);
-
-});
-
-Route::get('/partidos/this-week', [PartidoController::class, 'matchesThisWeek']);
-Route::get('/partidos/today', [PartidoController::class, 'matchesToday']);
-Route::get('/apuestas/usuario/{id}', [ApuestaController::class, 'obtenerApuestasPorUsuario']);
-Route::post('/partidos/update/{partidoId}',[PartidoController::class, 'update']);
+// Route::middleware('throttle:60,1')->group(function () {
 
 
+    Route::controller(LoginRegisterController::class)->group(function () {
+        Route::post('/register', 'register');
+        Route::post('/login', 'login');
+        Route::post('/logout', 'logout');
+        Route::get('/users', [LoginRegisterController::class, 'show']);
+    });
 
-Route::controller('ligas', LigaController::class);
-Route::apiResource('cuotas', CuotasController::class);
-Route::apiResource('ligas', LigaController::class);
-Route::apiResource('partidos', PartidoController::class);
-Route::apiResource('equipos', EquipoController::class);
-Route::apiResource('apuestas', ApuestaController::class);
-
-
-Route::get('/apuesta/{apuesta_id}', [ApuestaController::class,'Find']);
-Route::get('/cuotas/{cuota_id}', [CuotasController::class,'Find']);
-Route::get('/liga/{liga_id}', [LigaController::class,'Find']);
-Route::get('/partido/{partido_id}', [PartidoController::class,'Find']);
-Route::get('/equipo/{equipo_id}', [EquipoController::class,'Find']);
-// Route::post('apuesta/create/{apuesta}',[ApuestaController::class,'create']);
-Route::get('/partidos/{partido}/cuotas', [PartidoController::class, 'getCuotasForPartido']);
-Route::get('/liga/partidos/{ligaId}', [PartidoController::class, 'partidosPorLiga']);
+    Route::get('/partidos/this-week', [PartidoController::class, 'matchesThisWeek']);
+    Route::get('/partidos/today', [PartidoController::class, 'matchesToday']);
+    Route::get('/apuestas/usuario/{id}', [ApuestaController::class, 'obtenerApuestasPorUsuario']);
+    Route::post('/partidos/update/{partidoId}', [PartidoController::class, 'update']);
 
 
 
+    Route::controller('ligas', LigaController::class);
+    Route::apiResource('cuotas', CuotasController::class);
+    Route::apiResource('ligas', LigaController::class);
+    Route::apiResource('partidos', PartidoController::class);
+    Route::apiResource('equipos', EquipoController::class);
+    Route::apiResource('apuestas', ApuestaController::class);
+
+
+    Route::get('/apuesta/{apuesta_id}', [ApuestaController::class, 'Find']);
+    Route::get('/cuotas/{cuota_id}', [CuotasController::class, 'Find']);
+    Route::get('/liga/{liga_id}', [LigaController::class, 'Find']);
+    Route::get('/partido/{partido_id}', [PartidoController::class, 'Find']);
+    Route::get('/equipo/{equipo_id}', [EquipoController::class, 'Find']);
+    // Route::post('apuesta/create/{apuesta}',[ApuestaController::class,'create']);
+    Route::get('/partidos/{partido}/cuotas', [PartidoController::class, 'getCuotasForPartido']);
+    Route::get('/liga/partidos/{ligaId}', [PartidoController::class, 'partidosPorLiga']);
+// });
