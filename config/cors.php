@@ -15,11 +15,29 @@ return [
     |
     */
 
-    'paths' => ['*'],
+    'paths' => [
+
+        'api/*',
+       
+        'sanctum/csrf-cookie',
+       
+        'login',
+       
+        'register',
+       
+        'logout',
+       
+        'forgot-password',
+       
+        'reset-password',
+       
+        'verify-email',
+       
+        ],,
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL', 'http://harkaitzreact.informaticamajada.es')],
+    'allowed_origins' => [env('FRONTEND_URL', 'https://harkaitzreact.informaticamajada.es')],
 
     'allowed_origins_patterns' => [],
 
