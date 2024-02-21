@@ -37,7 +37,7 @@ return [
 
     ],
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['*','OPTIONS'],
 
     'allowed_origins' => [env('FRONTEND_URL', 'https://harkaitzreact.informaticamajada.es')],
 
