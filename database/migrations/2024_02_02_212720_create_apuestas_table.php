@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('apuestas', function (Blueprint $table) {
             $table->id();
-            $table->string('gasto');
-            $table->string('ganancias');
+            $table->decimal('gasto');
+            $table->decimal('ganancias');
             $table->date('fecha');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('sala_id')->constrained();

@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('partido_historico');
+        Schema::dropIfExists('partidos_historico');
     }
 };

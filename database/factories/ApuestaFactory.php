@@ -25,8 +25,8 @@ class ApuestaFactory extends Factory
     public function definition(): array
     {
         return [
-            'gasto' => $this->faker->word(),
-            'ganancias' => $this->faker->word(),
+            'gasto' => $this->faker->numberBetween(1,5),
+            'ganancias' => $this->faker->numberBetween(1,5),
             'fecha' => $this->faker->date(),
             'user_id' => User::factory(),
             'sala_id' => Sala::factory(),

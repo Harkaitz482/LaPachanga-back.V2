@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('telefono')->nullable();
             $table->string('historial')->nullable();
-            $table->enum('rol',['usuario','admin'])->nullable();
+            $table->enum('rol',['usuario','admin'])->default('usuario');
+            $table->date('fechanacimiento');
             $table->foreignId('sala_id')->nullable()->constrained();
             $table->timestamps();
         });
