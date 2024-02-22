@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('sala_id')->constrained();
             $table->foreignId('equipo_id')->constrained();
-            $table->foreignId('partido_id')->constrained();
+            $table->foreignId('partido_id')->constrained()->onDelete('cascade');
 
             $table->timestamps();
         });
