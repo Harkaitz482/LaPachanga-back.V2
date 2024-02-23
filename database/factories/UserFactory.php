@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'telefono' => $this->faker->word(),
             'historial' => $this->faker->word(),
             'rol' => $this->faker->randomElement(['usuario', 'admin']),
-            'fechanacimiento' =>$this->faker->date(),
+            // 'fechanacimiento' =>$this->faker->date(),
             'sala_id' => Sala::factory(),
         ];
     }

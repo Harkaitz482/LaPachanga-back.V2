@@ -49,4 +49,8 @@ class Equipo extends Model
     {
         return $this->belongsTo(Cuota::class);
     }
+    public function supercuota(): BelongsTo
+    {
+        return $this->belongsTo(SuperCuota::class);
+    }
 }

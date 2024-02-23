@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Cuota extends Model
 {
@@ -31,5 +33,9 @@ class Cuota extends Model
     public function equipos(): HasMany
     {
         return $this->hasMany(Equipo::class);
+    }
+    public function Supercuota(): BelongsTo
+    {
+        return $this->belongsTo(SuperCuota::class);
     }
 }
