@@ -19,9 +19,9 @@ return [
 
     'allowed_methods' => ['*','OPTIONS'],
 
-    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000')],
+    'allowed_origins' => [env('FRONTEND_URL', 'https://laravel-breeze-api-react-1.onrender.com'),'*'],
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => ['*'],
 
     'allowed_headers' => ['*'],
 
