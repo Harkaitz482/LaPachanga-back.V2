@@ -20,7 +20,7 @@ class CorsMiddleware
 
         // Lista de orígenes permitidos
         $allowedOrigins = [
-            'https://laravel-breeze-api-react-1.onrender.com',
+            'http://localhost:3000',
             // Añade más dominios según sea necesario
         ];
 
