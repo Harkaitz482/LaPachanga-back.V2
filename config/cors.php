@@ -39,7 +39,7 @@ return [
 
     'allowed_origins' => ['https://harkaitzreact.informaticamajada.es'],
 
-    'allowed_origins_patterns' => ['*'],
+    'allowed_origins_patterns' => [''],
 
     'allowed_headers' => ['*'],
 
