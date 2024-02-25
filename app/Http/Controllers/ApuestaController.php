@@ -33,7 +33,8 @@ class ApuestaController extends Controller
             'user_id' => 'required|integer|exists:users,id', // Ensures the user_id exists in the users table
             'sala_id' => 'required|integer|exists:salas,id', // Ensures the sala_id exists in the salas table
             'equipo_id' => 'required|integer|exists:equipos,id', // Ensures the equipo_id exists in the equipos table
-            'partido_id' => 'required|integer|exists:partidos,id', // Ensures the partido_id exists in the partidos table
+            'partido_id' => 'required|integer|exists:partidos,id',
+            'resultado' => 'string' // Ensures the partido_id exists in the partidos table
             // Add any other fields and validation rules here
         ]);
     

@@ -32,6 +32,7 @@ class ApuestaFactory extends Factory
             'sala_id' => Sala::factory(),
             'equipo_id' => Equipo::factory(),
             'partido_id' => Partido::factory(),
+            'resultado' => $this->faker->word(),
 
         ];
     }
