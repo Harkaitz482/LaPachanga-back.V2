@@ -37,7 +37,7 @@ return [
 
     'allowed_methods' => ['*','OPTIONS'],
 
-    'allowed_origins' => ['http://localhost:3000'],
+    'allowed_origins' => ['https://harkaitzreact.informaticamajada.es'],
 
     'allowed_origins_patterns' => [''],
 
