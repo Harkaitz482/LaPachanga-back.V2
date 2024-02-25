@@ -21,7 +21,7 @@ class CorsMiddleware
         $headers = [
             'Access-Control-Allow-Origin' => $frontendUrl,
             'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers' => 'Content-Type, Authorization, x-xsrf-token', // Agregar x-xsrf-token
+            'Access-Control-Allow-Headers' => 'Content-Type, Authorization,  ',
             'Access-Control-Allow-Credentials' => 'true', // Permitir credenciales
         ];
 
