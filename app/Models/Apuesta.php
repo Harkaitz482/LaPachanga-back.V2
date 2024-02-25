@@ -24,7 +24,8 @@ class Apuesta extends Model
         'user_id',
         'sala_id',
         'equipo_id',
-        'partido_id'
+        'partido_id',
+        'resultado',
     ];
 
     /**
