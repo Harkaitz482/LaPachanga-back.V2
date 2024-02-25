@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
 class CorsMiddleware
 {
     /**
@@ -16,23 +15,29 @@ class CorsMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $origin = $request->headers->get('Origin');
+        // Permitir solicitudes desde un origen específico
+        $frontendUrl = env('FRONTEND_URL', 'https://harkaitzreact.informaticamajada.es');
 
-        // Lista de orígenes permitidos
-        $allowedOrigins = [
-            'http://localhost:3000',
-            // Añade más dominios según sea necesario
+        $headers = [
+            'Access-Control-Allow-Origin' => $frontendUrl,
+            'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers' => 'Content-Type, Authorization, x-xsrf-token', // Agregar x-xsrf-token
+            'Access-Control-Allow-Credentials' => 'true', // Permitir credenciales
         ];
 
-        if (in_array($origin, $allowedOrigins)) {
-            $response = $next($request);
-            $response->headers->set('Access-Control-Allow-Origin', $origin);
-            $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-            $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-            $response->headers->set('Access-Control-Allow-Credentials', 'true'); // Permitir credenciales
-            return $response;
+        // Si la solicitud es de tipo OPTIONS, simplemente retornamos una respuesta exitosa con los encabezados CORS.
+        if ($request->isMethod('OPTIONS')) {
+            return response()->json('OK', 200, $headers);
         }
 
-        return $next($request);
+        // Continuar con la solicitud normalmente.
+        $response = $next($request);
+
+        // Agregar los encabezados CORS a la respuesta.
+        foreach ($headers as $key => $value) {
+            $response->header($key, $value);
+        }
+
+        return $response;
     }
 }
