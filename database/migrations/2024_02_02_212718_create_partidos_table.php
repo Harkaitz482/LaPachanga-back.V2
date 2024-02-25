@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('hora');
             $table->integer('Puntuacion');
             $table->string('ganador')->nullable();
-            $table->enum('rol',['pendiente','terminado','suspendido'])->default('pendiente');
+            $table->enum('estado',['pendiente','Finalizado','suspendido'])->default('pendiente');
             $table->foreignId('liga_id')->constrained('ligas');
             $table->timestamps();
         });

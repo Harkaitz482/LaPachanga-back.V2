@@ -15,6 +15,8 @@ class SuperCuota extends Model
         'nombre',
         'equipo_id',
         'cuota_id',
+        'partido_id',
+        'resultado',
     ];
 
     public function equipo()

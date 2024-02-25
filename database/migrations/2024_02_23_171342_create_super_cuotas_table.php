@@ -18,6 +18,8 @@ class CreateSuperCuotasTable extends Migration
             $table->string('nombre');
             $table->foreignId('equipo_id')->constrained();
             $table->foreignId('cuota_id')->constrained();
+            $table->foreignId('partido_id')->constrained();
+            $table->string('resultado');
             $table->timestamps();
 
            

@@ -24,6 +24,9 @@ class SuperCuotasController extends Controller
             'nombre' => 'required|string|max:255',
             'equipo_id' => 'required|integer|exists:equipos,id',
             'cuota_id' => 'required|integer|exists:cuotas,id',
+            'partido_id' => 'required|integer|exists:partidos,id',
+            'resultado' =>'required|string|max:255',
+
         ]);
 
         $superCuota = SuperCuota::create($validatedData);
