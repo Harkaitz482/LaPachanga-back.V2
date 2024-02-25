@@ -6,6 +6,7 @@ use App\Http\Controllers\CuotasController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\LigaController;
 use App\Http\Controllers\PartidoController;
+use App\Http\Controllers\SuperCuotasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     Route::get('/partidos/today', [PartidoController::class, 'matchesToday']);
     Route::get('/apuestas/usuario/{id}', [ApuestaController::class, 'obtenerApuestasPorUsuario']);
     Route::post('/partidos/update/{partidoId}', [PartidoController::class, 'update']);
+    Route::post('/supercuota/update/{supercuotaId}', [SuperCuotasController::class, 'update']);
 
 
 
@@ -48,6 +50,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     Route::apiResource('partidos', PartidoController::class);
     Route::apiResource('equipos', EquipoController::class);
     Route::apiResource('apuestas', ApuestaController::class);
+    Route::apiResource('supercuota', SuperCuotasController::class);
 
 
     Route::get('/apuesta/{apuesta_id}', [ApuestaController::class, 'Find']);
