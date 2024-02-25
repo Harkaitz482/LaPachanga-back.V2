@@ -17,3 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/app/Http/Kernel.php
+/config/cors.php
+/app/Http/Middleware/CorsMiddleware.php
